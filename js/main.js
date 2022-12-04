@@ -3,14 +3,18 @@ const numberError = document.querySelector('.error-cardnumber');
 const inputNumberField = document.getElementById('cardnumber');
 const cardNumberOnCardImage = document.querySelector('.card-front-number');
 const cardHolderName = document.getElementById('cardholder-name');
+const expMonth = document.getElementById('exp-month');
+const expYear = document.getElementById('exp-year');
 
 confirmBtn.addEventListener('click', confirmBtnHandler);
 inputNumberField.addEventListener('input', liveNumberChange);
 cardHolderName.addEventListener('input', liveNameChange);
+expMonth.addEventListener('input', liveDateChange);
 
 function confirmBtnHandler() {
 	numberValidator();
 	nameFieldValidate();
+	monthValidate();
 }
 
 function numberValidator() {
@@ -60,4 +64,27 @@ function nameFieldValidate() {
 		nameError.classList.add('off');
 		cardHolderName.classList.remove('error-border');
 	}
+}
+
+function liveDateChange() {
+	const onCardDateMonth = document.querySelector('.mm');
+
+	expMonth.value = expMonth.value.replace(/\D/g, '');
+
+	if (expMonth.value.length > 2) {
+		expMonth.value = expMonth.value.slice(0, 2);
+	}
+	onCardDateMonth.textContent = expMonth.value.padStart(2, '0');
+	monthValidate();
+}
+
+function monthValidate() {
+	const errorDate = document.querySelector('.error-date');
+	if (expMonth.value === '00' || +expMonth.value < 0 || +expMonth.value > 12) {
+		expMonth.classList.add('error-border');
+		errorDate.classList.remove('off');
+	}   else {
+        expMonth.classList.remove('error-border');
+        errorDate.classList.add('off');
+    }
 }
