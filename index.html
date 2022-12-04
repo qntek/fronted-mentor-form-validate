@@ -23,7 +23,7 @@
     }
   </style>
   <link rel="stylesheet" href="./css/style.css">
-  <script src="./js/main.js"></script>
+  <script src="./js/main.js" defer></script>
 </head>
 <body>
   <main>
@@ -50,13 +50,13 @@
           <div class="form-name-container">
             <label for="cardholder-name">Cardholder Name</label>
             <input type="text" name="cardholder" id="cardholder-name" placeholder="e.g. Jane Appleseed">
-            <p class="error">Can't be blank</p>
+            <p class="error error-cardholder off">Can't be blank</p>
           </div>
 
           <div class="form-number-container">
             <label for="cardnumber">Card Number</label>
-            <input type="number" name="cardnumber" id="cardnumber" placeholder="e.g. 1234 5678 9123 0000" min="0" max="9999999999999999">
-            <p class="error">Can't be blank</p>
+            <input type="text" name="cardnumber" id="cardnumber" placeholder="e.g. 1234 5678 9123 0000" pattern="\d*" maxlength="16">
+            <p class="error error-cardnumber off">Invalid number of characters</p>
           </div>
 
           <div class="form-date-cvc-container">
@@ -71,17 +71,17 @@
                 <input type="number" min="22" max="99" id="exp-year" placeholder="YY">
               </div>
 
-              <p class="error">Can't be blank</p>
+              <p class="error error-date off">Can't be blank</p>
             </div>
 
             <div class="form-cvc-container">
               <label for="cvc-number" class="cvc-number">CVC</label>
               <input type="number" name="cvc-number" id="cvc-number" min="0" max="999" step="1" placeholder="e.g. 123">
-              <p class="error error-cvc">Can't be blank</p>
+              <p class="error error-cvc off">Can't be blank</p>
             </div>
           </div>
 
-          <button type="button">Confirm</button>
+          <button type="button" id="confirm-btn">Confirm</button>
         </form>
       </div>
     </div>

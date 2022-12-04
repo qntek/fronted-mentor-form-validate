@@ -22,6 +22,10 @@ select {
   font-family: inherit;
 }
 
+.disabled {
+  display: none;
+}
+
 body {
   width: 100vw;
   min-width: 375px;
@@ -190,6 +194,13 @@ body {
 .data-container form .off {
   visibility: hidden;
 }
+.data-container form .error-border {
+  border: 1px solid hsl(0deg, 100%, 66%);
+}
+.data-container form .error-border:focus,
+.data-container form .error-border:active {
+  outline: 1px solid hsl(0deg, 100%, 66%);
+}
 .data-container form .form-date-cvc-container {
   width: 100%;
   display: flex;
@@ -220,6 +231,7 @@ body {
   cursor: pointer;
   transition: border 0.3s;
 }
-.data-container button:focus, .data-container button:active {
+.data-container button:focus,
+.data-container button:active {
   border: 2px solid hsl(270deg, 3%, 87%);
 }/*# sourceMappingURL=style.css.map */
