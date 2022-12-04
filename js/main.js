@@ -1,24 +1,31 @@
 const confirmBtn = document.getElementById('confirm-btn');
-const numberError = document.querySelector('.error-cardnumber');
 const inputNumberField = document.getElementById('cardnumber');
-const cardNumberOnCardImage = document.querySelector('.card-front-number');
 const cardHolderName = document.getElementById('cardholder-name');
 const expMonth = document.getElementById('exp-month');
 const expYear = document.getElementById('exp-year');
+const cvcInput = document.getElementById('cvc-number');
 
 confirmBtn.addEventListener('click', confirmBtnHandler);
 inputNumberField.addEventListener('input', liveNumberChange);
 cardHolderName.addEventListener('input', liveNameChange);
 expMonth.addEventListener('input', liveDateChange);
 expYear.addEventListener('input', liveDateChange);
+cvcInput.addEventListener('input', liveCvcChange);
 
 function confirmBtnHandler() {
+    const errors = document.querySelectorAll('.error');
 	numberValidator();
 	nameFieldValidate();
 	dateValidate();
+    cvcValidator();
+    for (let error of errors) {
+        if (!error.classList.contains('off')) return;
+    }
+    document.querySelector('.data-container').style.display = 'none';
 }
 
 function numberValidator() {
+	const numberError = document.querySelector('.error-cardnumber');
 	if (inputNumberField.value.toString().length === 16) {
 		numberError.classList.add('off');
 		inputNumberField.classList.remove('error-border');
@@ -31,10 +38,11 @@ function numberValidator() {
 }
 
 function liveNumberChange() {
-	inputNumberField.value = inputNumberField.value.replace(/\D/g, '');
+	const cardNumberOnCardImage = document.querySelector('.card-front-number');
+	inputNumberField.value = inputNumberField.value.replace(/\D/g, ''); // removes everything with is not a number
 	if (inputNumberField.classList.contains('error-border')) {
 		inputNumberField.classList.remove('error-border');
-		numberError.classList.add('off');
+		document.querySelector('.error-cardnumber').classList.add('off');
 	}
 
 	let currentValue = inputNumberField.value.padEnd(16, '0');
@@ -50,16 +58,16 @@ function liveNumberChange() {
 
 function liveNameChange() {
 	const nameOnCardImage = document.querySelector('.card-front-cardholder-name');
-    if (cardHolderName.value.length === 0) {
-        document.querySelector('.error-cardholder').classList.add('off');
-        cardHolderName.classList.remove('error-border');
-    }
+	if (cardHolderName.value.length === 0) {
+		document.querySelector('.error-cardholder').classList.add('off');
+		cardHolderName.classList.remove('error-border');
+	}
 	nameOnCardImage.textContent = cardHolderName.value.toUpperCase();
-    if (nameOnCardImage.textContent.includes(' ')) nameFieldValidate();
+	if (nameOnCardImage.textContent.includes(' ')) nameFieldValidate();
 }
 
 function nameFieldValidate() {
-	const regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
+	const regName = /^[a-zA-Z]+ [a-zA-Z]+$/; // validates the name field if it's constructed with a two words made only from letters (with one space between).
 	const name = cardHolderName.value;
 	const nameError = document.querySelector('.error-cardholder');
 	if (!regName.test(name)) {
@@ -104,11 +112,31 @@ function dateValidate() {
 		errorDate.classList.add('off');
 	}
 	let year = new Date().getFullYear().toString().slice(-2);
-	if (!expYear.value || +expYear.value < +year || +expYear.value > (+year + 4)) {
+	if (!expYear.value || +expYear.value < +year || +expYear.value > +year + 4) {
 		expYear.classList.add('error-border');
 		errorDate.classList.remove('off');
 	} else {
 		expYear.classList.remove('error-border');
 		errorDate.classList.add('off');
 	}
+}
+
+function liveCvcChange() {
+	const cvcOnCardImg = document.querySelector('.card-reverse-cvc');
+	cvcInput.value = cvcInput.value.replace(/\D/g, '');
+	if (cvcInput.value.length > 3) {
+		cvcInput.value = cvcInput.value.slice(0, 3);
+	}
+	cvcOnCardImg.textContent = cvcInput.value.padStart(3, '0');
+}
+
+function cvcValidator() {
+    const cvcError = document.querySelector('.error-cvc');
+    if (cvcInput.value.length != 3) {
+        cvcError.classList.remove('off');
+        cvcInput.classList.add('error-border');
+    } else {
+        cvcError.classList.add('off');
+        cvcInput.classList.remove('error-border');
+    }
 }
