@@ -10,11 +10,12 @@ confirmBtn.addEventListener('click', confirmBtnHandler);
 inputNumberField.addEventListener('input', liveNumberChange);
 cardHolderName.addEventListener('input', liveNameChange);
 expMonth.addEventListener('input', liveDateChange);
+expYear.addEventListener('input', liveDateChange);
 
 function confirmBtnHandler() {
 	numberValidator();
 	nameFieldValidate();
-	monthValidate();
+	dateValidate();
 }
 
 function numberValidator() {
@@ -31,7 +32,6 @@ function numberValidator() {
 
 function liveNumberChange() {
 	inputNumberField.value = inputNumberField.value.replace(/\D/g, '');
-
 	if (inputNumberField.classList.contains('error-border')) {
 		inputNumberField.classList.remove('error-border');
 		numberError.classList.add('off');
@@ -50,7 +50,12 @@ function liveNumberChange() {
 
 function liveNameChange() {
 	const nameOnCardImage = document.querySelector('.card-front-cardholder-name');
+    if (cardHolderName.value.length === 0) {
+        document.querySelector('.error-cardholder').classList.add('off');
+        cardHolderName.classList.remove('error-border');
+    }
 	nameOnCardImage.textContent = cardHolderName.value.toUpperCase();
+    if (nameOnCardImage.textContent.includes(' ')) nameFieldValidate();
 }
 
 function nameFieldValidate() {
@@ -68,23 +73,42 @@ function nameFieldValidate() {
 
 function liveDateChange() {
 	const onCardDateMonth = document.querySelector('.mm');
+	const onCardDateYear = document.querySelector('.yy');
 
 	expMonth.value = expMonth.value.replace(/\D/g, '');
+	expYear.value = expYear.value.replace(/\D/g, '');
 
 	if (expMonth.value.length > 2) {
 		expMonth.value = expMonth.value.slice(0, 2);
 	}
+	if (expYear.value.length > 2) {
+		expYear.value = expYear.value.slice(0, 2);
+	}
 	onCardDateMonth.textContent = expMonth.value.padStart(2, '0');
-	monthValidate();
+	onCardDateYear.textContent = expYear.value.padStart(2, '0');
+	dateValidate();
 }
 
-function monthValidate() {
+function dateValidate() {
 	const errorDate = document.querySelector('.error-date');
-	if (expMonth.value === '00' || +expMonth.value < 0 || +expMonth.value > 12) {
+	if (
+		expMonth.value === '00' ||
+		!expMonth.value ||
+		+expMonth.value < 1 ||
+		+expMonth.value > 12
+	) {
 		expMonth.classList.add('error-border');
 		errorDate.classList.remove('off');
-	}   else {
-        expMonth.classList.remove('error-border');
-        errorDate.classList.add('off');
-    }
+	} else {
+		expMonth.classList.remove('error-border');
+		errorDate.classList.add('off');
+	}
+	let year = new Date().getFullYear().toString().slice(-2);
+	if (!expYear.value || +expYear.value < +year || +expYear.value > (+year + 4)) {
+		expYear.classList.add('error-border');
+		errorDate.classList.remove('off');
+	} else {
+		expYear.classList.remove('error-border');
+		errorDate.classList.add('off');
+	}
 }
