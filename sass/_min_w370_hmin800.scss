@@ -1,0 +1,26 @@
+@media (min-width: 370px) and (min-height: 800px) {
+	.bg-container {
+		.card-reverse {
+			position: absolute;
+			top: 50px;
+			right: 15px;
+			width: 300px;
+			height: 165px;
+			div {
+				.card-reverse-cvc {
+					top: 74px;
+					left: 240px;
+					font-size: 12px;
+				}
+			}
+		}
+		.card-front {
+			width: 300px;
+			height: 165px;
+			top: 145px;
+			left: 15px;
+		}
+	
+	}
+	
+	}
