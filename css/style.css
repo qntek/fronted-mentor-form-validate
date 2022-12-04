@@ -23,7 +23,7 @@ select {
 }
 
 .disabled {
-  display: none;
+  display: none !important;
 }
 
 body {
@@ -220,7 +220,9 @@ body {
 .data-container form .form-date-cvc-container .form-cvc-container {
   width: 50%;
 }
-.data-container button {
+
+button {
+  width: 100%;
   border: none;
   height: 50px;
   border-radius: 10px;
@@ -231,7 +233,33 @@ body {
   cursor: pointer;
   transition: border 0.3s;
 }
-.data-container button:focus,
-.data-container button:active {
+
+button:focus,
+button:active {
   border: 2px solid hsl(270deg, 3%, 87%);
+}
+
+.thank-you-window {
+  grid-row: 2/4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: calc(100% - 50px);
+  max-width: 600px;
+}
+.thank-you-window img {
+  margin-bottom: 50px;
+  width: 100px;
+}
+.thank-you-window .thank-you-label {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 28px;
+  letter-spacing: 2px;
+}
+.thank-you-window .thank-you-text {
+  color: hsl(279deg, 6%, 55%);
+  margin: 15px 25px 40px 25px;
 }/*# sourceMappingURL=style.css.map */

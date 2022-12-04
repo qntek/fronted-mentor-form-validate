@@ -22,6 +22,9 @@ function confirmBtnHandler() {
         if (!error.classList.contains('off')) return;
     }
     document.querySelector('.data-container').style.display = 'none';
+    document.querySelector('.thank-you-window').classList.remove('disabled');
+    const submitBtn = document.querySelector('#submit-button');
+    submitBtn.addEventListener('click', () => window.location.reload() ) ;
 }
 
 function numberValidator() {
