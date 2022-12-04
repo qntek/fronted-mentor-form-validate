@@ -23,9 +23,9 @@ body {
 	background-position: center;
 	background-size: cover;
 	z-index: 1;
-	.card-reverce {
+	.card-reverse {
 		position: absolute;
-		top: 30px;
+		top: 50px;
 		right: 15px;
 		width: 300px;
 		height: 165px;
@@ -36,7 +36,7 @@ body {
 			position: relative;
 			width: 100%;
 			height: 100%;
-			.card-reverce-cvc {
+			.card-reverse-cvc {
 				position: absolute;
 				display: inline-block;
 				top: 74px;
@@ -50,7 +50,7 @@ body {
 		position: absolute;
 		width: 300px;
 		height: 165px;
-		top: 125px;
+		top: 145px;
 		left: 15px;
 		background-image: url('../images/bg-card-front.png');
 		background-size: cover;
@@ -114,4 +114,87 @@ body {
 
 .data-container {
 	grid-row: 2/4;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 80px 25px 20px 25px;
+	width: calc(100% - 50px);
+	max-width: 600px;
+	form {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		gap: 25px;
+		color: hsl(278, 68%, 11%);
+		text-transform: uppercase;
+		font-size: 14px;
+		label,
+		.expire-date {
+			letter-spacing: 1px;
+			font-weight: 500;
+		}
+		input {
+			width: 100%;
+			height: 45px;
+			margin-top: 10px;
+			border-radius: 5px;
+			color: hsl(278, 68%, 11%);
+			font-size: 18px;
+			border: 1px solid hsl(270, 3%, 87%);
+			padding: 8px 16px;
+		}
+		input:focus,
+		input:active {
+			outline: 1px solid hsl(278, 68%, 11%);
+		}
+		input::placeholder {
+			color: hsl(270, 3%, 87%);
+		}
+		.error {
+			color: hsl(0, 100%, 66%);
+			text-transform: none;
+			font-size: 12px;
+			margin-top: 5px;
+			visibility: visible;
+		}
+		.off {
+			visibility: hidden;
+		}
+		.form-date-cvc-container {
+			width: 100%;
+			display: flex;
+			gap: 15px;
+			.form-date-container {
+				width: 50%;
+			}
+			.form-date-inputs {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				#exp-month {
+					margin-right: 15px;
+				}
+			}
+			.form-cvc-container {
+				width: 50%;
+			}
+		}
+	}
+	button {
+		border: none;
+		height: 50px;
+		border-radius: 10px;
+		color: white;
+		background-color: hsl(278, 68%, 11%);
+		font-size: 18px;
+		letter-spacing: 1px;
+		cursor: pointer;
+		transition: border 0.3s;
+	}
+	button:focus, button:active {
+		border: 2px solid hsl(270, 3%, 87%);
+	}
 }

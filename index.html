@@ -37,36 +37,51 @@
             <p class="card-front-exp-date"><span class="mm">00</span>/<span class="yy">00</span></p>
           </div>
         </div>
-        <div class="card-reverce">
+        <div class="card-reverse">
           <div>
-            <p class="card-reverce-cvc">000</p>
+            <p class="card-reverse-cvc">000</p>
           </div>
         </div>
       </div>
+
       <div class="data-container">
         <form method="post">
+
           <div class="form-name-container">
             <label for="cardholder-name">Cardholder Name</label>
             <input type="text" name="cardholder" id="cardholder-name" placeholder="e.g. Jane Appleseed">
+            <p class="error">Can't be blank</p>
           </div>
+
           <div class="form-number-container">
             <label for="cardnumber">Card Number</label>
-            <input type="number" name="cardnumber" id="cardnumber" placeholder="e.g. 1234 5678 9123 0000" maxlength="16"
-              minlength="16">
+            <input type="number" name="cardnumber" id="cardnumber" placeholder="e.g. 1234 5678 9123 0000" min="0" max="9999999999999999">
+            <p class="error">Can't be blank</p>
           </div>
+
           <div class="form-date-cvc-container">
-            <fieldset>
-              <legend class="exp-date">Expire date</legend>
-              <label class="exp-date" for="exp-month"></label>
-              <label class="exp-date" for="exp-year"></label>
+
+            <div class="form-date-container">
               <p class="expire-date">EXP. DATE (MM/YY)</p>
-              <input type="number" min="1" max="12" id="exp-month" placeholder="MM">
-              <input type="number" min="22" max="99" id="exp-year" placeholder="YY">
-            </fieldset>
-            <label for="cvc-number">CVC</label>
-            <input type="number" name="cvc-number" id="cvc-number" minlength="3" maxlength="3" placeholder="e.g. 123">
+
+              <div class="form-date-inputs">
+                <label class="exp-date-mm" for="exp-month"></label>
+                <input type="number" min="1" max="12" id="exp-month" placeholder="MM">
+                <label class="exp-date-yy" for="exp-year"></label>
+                <input type="number" min="22" max="99" id="exp-year" placeholder="YY">
+              </div>
+
+              <p class="error">Can't be blank</p>
+            </div>
+
+            <div class="form-cvc-container">
+              <label for="cvc-number" class="cvc-number">CVC</label>
+              <input type="number" name="cvc-number" id="cvc-number" min="0" max="999" step="1" placeholder="e.g. 123">
+              <p class="error error-cvc">Can't be blank</p>
+            </div>
           </div>
-          <button type="submit">Confirm</button>
+
+          <button type="button">Confirm</button>
         </form>
       </div>
     </div>
