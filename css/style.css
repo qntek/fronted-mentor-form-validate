@@ -474,10 +474,13 @@ button:active {
 }
 @media (min-width: 768px) and (min-height: 1000px) {
   .bg-container .card-reverse {
+    position: absolute;
     top: 80px;
     right: 100px;
+    width: 350px;
+    height: 192px;
   }
-  .card-front {
+  .bg-container .card-front {
     top: 190px;
     left: 100px;
   }
