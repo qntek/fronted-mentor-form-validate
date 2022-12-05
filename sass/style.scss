@@ -121,7 +121,7 @@ body {
 	justify-content: center;
 	margin: 40px auto 20px auto;
 	width: calc(100% - 50px);
-	max-width: 600px;
+	max-width: 380px;
 	form {
 		width: 100%;
 		height: 100%;
@@ -223,7 +223,7 @@ button:active {
 	justify-content: center;
 	margin: 60px auto;
 	width: calc(100% - 50px);
-	max-width: 600px;
+	max-width: 380px;
 	img {
 		margin-bottom: 50px;
 		width: 100px;
@@ -243,4 +243,6 @@ button:active {
 @import 'min_w350_hmin650';
 @import 'min_w370_hmin800';
 @import 'min_w576_hmin900';
-@import 'min_w768_hmin1000';
+@import 'min_w768_hmin900';
+@import 'min_w1200';
+@import 'min_w1400';

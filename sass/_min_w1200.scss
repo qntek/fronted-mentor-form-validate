@@ -1,0 +1,157 @@
+@media (min-width: 1200px) {
+body {
+	font-size: 20px;
+
+}
+.container {
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr;
+}
+
+.bg-container {
+	grid-row: 1/2;
+	grid-column: 1/2;
+	background-image: url('../images/bg-main-desktop.png');
+	.card-reverse {
+		top: 48%;
+		left: 100%;
+		transform: translate(-50%, 30%);
+		width: 350px;
+		height: 192px;
+		border: 1px solid hsl(270, 3%, 87%);
+		border-radius: 10px;
+		overflow: hidden;
+		div {
+			.card-reverse-cvc {
+				top: 83px;
+				left: 270px;
+				font-size: 16px;
+			}
+		}
+	}
+	.card-front {
+		width: 350px;
+		height: 192px;
+		top: 38%;
+		left: 30%;
+		transform: translate(0, -50%);
+		background-image: url('../images/bg-card-front.png');
+		div {
+			.card-front-logo {
+				width: 80px;
+				margin: 25px;
+			}
+			.card-front-number {
+				position: absolute;
+				left: 25px;
+				top: 105px;
+				letter-spacing: 3px;
+				font-size: 22px;
+			}
+			.card-front-cardholder-name,
+			.card-front-exp-date {
+				position: absolute;
+				top: 150px;
+				text-transform: uppercase;
+				font-size: 15px;
+				letter-spacing: 1px;
+			}
+			.card-front-cardholder-name {
+				left: 25px;
+			}
+			.card-front-exp-date {
+				right: 25px;
+			}
+		}
+	}
+	.card-front::before {
+		content: '';
+		width: 350px;
+		height: 192px;
+	}
+}
+
+.data-container {
+	grid-row: 1/2;
+	grid-column: 2/4;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	justify-content: center;
+	margin: 40px auto 40px auto;
+	width: calc(100% - 60px);
+	max-width: 380px;
+	form {
+		justify-content: center;
+		gap: 25px;
+		font-size: 16px;
+		z-index: 1000;
+		label,
+		.expire-date {
+			letter-spacing: 2px;
+		}
+		input {
+			width: 100%;
+			height: 48px;
+			margin-top: 10px;
+			border-radius: 8px;
+			font-size: 18px;
+			padding: 8px 16px;
+		}
+		.off {
+			visibility: hidden !important;
+		}
+		.error {
+			font-size: 14px;
+			margin-top: 5px;
+		}
+		.form-date-cvc-container {
+			width: 100%;
+			gap: 15px;
+			.form-date-container {
+				width: 50%;
+			}
+			.form-date-inputs {
+				#exp-month {
+					margin-right: 15px;
+				}
+			}
+			.form-cvc-container {
+				width: 50%;
+			}
+		}
+	}
+}
+button {
+	height: 50px;
+	border-radius: 8px;
+	font-size: 20px;
+	letter-spacing: 1px;
+}
+button:focus,
+button:active,
+button:hover {
+	border: 1px solid hsl(270, 3%, 87%);
+}
+
+.thank-you-window {
+	grid-row: 1/2;
+	grid-column: 2/4;
+	margin: 60px auto;
+	width: calc(100% - 50px);
+	max-width: 400px;
+	img {
+		margin-bottom: 50px;
+		width: 100px;
+	}
+	.thank-you-label {
+		font-weight: 500;
+		font-size: 28px;
+		letter-spacing: 2px;
+	}
+	.thank-you-text {
+		color: hsl(279, 6%, 55%);
+		margin: 15px 25px 40px 25px;
+	}
+}
+}
