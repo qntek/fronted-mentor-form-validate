@@ -13,18 +13,18 @@ expYear.addEventListener('input', liveDateChange);
 cvcInput.addEventListener('input', liveCvcChange);
 
 function confirmBtnHandler() {
-    const errors = document.querySelectorAll('.error');
+	const errors = document.querySelectorAll('.error');
 	numberValidator();
 	nameFieldValidate();
 	dateValidate();
-    cvcValidator();
-    for (let error of errors) {
-        if (!error.classList.contains('off')) return;
-    }
-    document.querySelector('.data-container').style.display = 'none';
-    document.querySelector('.thank-you-window').classList.remove('disabled');
-    const submitBtn = document.querySelector('#submit-button');
-    submitBtn.addEventListener('click', () => window.location.reload() ) ;
+	cvcValidator();
+	for (let error of errors) {
+		if (!error.classList.contains('off')) return;
+	}
+	document.querySelector('.data-container').style.display = 'none';
+	document.querySelector('.thank-you-window').classList.remove('disabled');
+	const submitBtn = document.querySelector('#submit-button');
+	submitBtn.addEventListener('click', () => window.location.reload());
 }
 
 function numberValidator() {
@@ -112,15 +112,26 @@ function dateValidate() {
 		errorDate.classList.remove('off');
 	} else {
 		expMonth.classList.remove('error-border');
+		expYear.classList.remove('error-border');
 		errorDate.classList.add('off');
 	}
+
 	let year = new Date().getFullYear().toString().slice(-2);
+	//year section
 	if (!expYear.value || +expYear.value < +year || +expYear.value > +year + 4) {
 		expYear.classList.add('error-border');
 		errorDate.classList.remove('off');
+		errorDate.textContent = 'Invalid format (MM / YY)';
+	} else if (+expYear.value == +year) {
+		if (+expMonth.value < new Date().getMonth() + 1) {
+			expYear.classList.add('error-border');
+			errorDate.classList.remove('off');
+			errorDate.textContent = 'Card out of date'
+		}
 	} else {
 		expYear.classList.remove('error-border');
 		errorDate.classList.add('off');
+		errorDate.textContent = 'Invalid format (MM / YY)';
 	}
 }
 
@@ -134,12 +145,12 @@ function liveCvcChange() {
 }
 
 function cvcValidator() {
-    const cvcError = document.querySelector('.error-cvc');
-    if (cvcInput.value.length != 3) {
-        cvcError.classList.remove('off');
-        cvcInput.classList.add('error-border');
-    } else {
-        cvcError.classList.add('off');
-        cvcInput.classList.remove('error-border');
-    }
+	const cvcError = document.querySelector('.error-cvc');
+	if (cvcInput.value.length != 3) {
+		cvcError.classList.remove('off');
+		cvcInput.classList.add('error-border');
+	} else {
+		cvcError.classList.add('off');
+		cvcInput.classList.remove('error-border');
+	}
 }
