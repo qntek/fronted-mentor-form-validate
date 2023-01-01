@@ -1,3 +1,7 @@
+
+import '../sass/style.scss';
+import '../index.html';
+
 const confirmBtn = document.getElementById('confirm-btn');
 const inputNumberField = document.getElementById('cardnumber');
 const cardHolderName = document.getElementById('cardholder-name');
