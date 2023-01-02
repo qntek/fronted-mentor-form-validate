@@ -1,42 +1,45 @@
 import React from 'react';
 
+import InputOneField from './InputOneField';
 class AppInput extends React.Component {
 	constructor(props) {
 		super(props);
 	}
 
 	render() {
+		const nameData = {
+			class_name: 'form-name-container',
+			label_htmlFor: 'cardholder-name',
+			label_text: 'Cardholder Name',
+			input_max_length: '26',
+			input_pattern: '',
+			input_place_holder: 'e.g. Jane Appleseed',
+			error_text: 'Invalid format, name and surname required.',
+		};
+		const numberData = {
+			class_name: 'form-number-container',
+			label_htmlFor: 'cardnumber',
+			label_text: 'Card Number',
+			input_max_length: '16',
+			input_pattern: 'd*',
+			input_place_holder: 'e.g. 1234 5678 9123 0000',
+			error_text: 'Invalid number of characters',
+		};
+
 		return (
 			<div className='data-container'>
 				<form method='post'>
-					<div className='form-name-container'>
-						<label htmlFor='cardholder-name'>Cardholder Name</label>
-						<input
-							type='text'
-							name='cardholder'
-							maxLength='50'
-							id='cardholder-name'
-							placeholder='e.g. Jane Appleseed'
-						/>
-						<p className='error error-cardholder off'>
-							Invalid format, name and surname required.
-						</p>
-					</div>
+					<InputOneField
+						source={nameData}
+						errors={this.props.data.onError.errorName}
+						method={this.props.methods.onNameChange}
+					/>
 
-					<div className='form-number-container'>
-						<label htmlFor='cardnumber'>Card Number</label>
-						<input
-							type='text'
-							name='cardnumber'
-							id='cardnumber'
-							placeholder='e.g. 1234 5678 9123 0000'
-							pattern='\d*'
-							maxLength='16'
-						/>
-						<p className='error error-cardnumber off'>
-							Invalid number of characters
-						</p>
-					</div>
+					<InputOneField
+						source={numberData}
+						errors={this.props.data.onError.errorNumber}
+						method={this.props.methods.onNumberChange}
+					/>
 
 					<div className='form-date-cvc-container'>
 						<div className='form-date-container'>

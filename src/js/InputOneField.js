@@ -1,0 +1,33 @@
+import React from 'react';
+
+class InputOneField extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	render() {
+		return (
+			<div className={this.props.source.class_name}>
+				<label htmlFor={this.props.source.label_htmlFor}>
+					{this.props.source.label_text}
+				</label>
+				<input
+					type='text'
+					maxLength={this.props.source.input_max_length}
+					pattern={this.props.source.input_pattern}
+					placeholder={this.props.source.input_place_holder}
+					onChange={this.props.method}
+				/>
+				<p
+					className={
+						this.props.error === 'true'
+							? 'error error-cardholder'
+							: 'error error-cardholder off'
+					}>
+					{this.props.source.error_text}
+				</p>
+			</div>
+		);
+	}
+}
+
+export default InputOneField;
