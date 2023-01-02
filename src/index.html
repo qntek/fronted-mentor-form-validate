@@ -14,53 +14,7 @@
 </head>
 <body>
   <main>
-    <div class="container" id="root">
-      
-
-      <div class="data-container">
-        <form method="post">
-
-          <div class="form-name-container">
-            <label for="cardholder-name">Cardholder Name</label>
-            <input type="text" name="cardholder" maxlength="50" id="cardholder-name" placeholder="e.g. Jane Appleseed">
-            <p class="error error-cardholder off">Invalid format, name and surname required.</p>
-          </div>
-
-          <div class="form-number-container">
-            <label for="cardnumber">Card Number</label>
-            <input type="text" name="cardnumber" id="cardnumber" placeholder="e.g. 1234 5678 9123 0000" pattern="\d*"
-              maxlength="16">
-            <p class="error error-cardnumber off">Invalid number of characters</p>
-          </div>
-
-          <div class="form-date-cvc-container">
-
-            <div class="form-date-container">
-              <p class="expire-date">EXP. DATE (MM/YY)</p>
-
-              <div class="form-date-inputs">
-                <label class="exp-date-mm" for="exp-month"></label>
-                <input type="number" min="1" max="12" id="exp-month" placeholder="MM" pattern="\d*" maxlength="2">
-                <label class="exp-date-yy" for="exp-year"></label>
-                <input type="number" pattern="\d*" maxlength="2" id="exp-year" placeholder="YY">
-              </div>
-
-              <p class="error error-date off">Invalid format (MM / YY)</p>
-            </div>
-
-            <div class="form-cvc-container">
-              <label for="cvc-number" class="cvc-number">CVC</label>
-              <input type="text" name="cvc-number" pattern="\d*" maxlength="3" id="cvc-number" step="1"
-                placeholder="e.g. 123">
-              <p class="error error-cvc off">Three digits required.</p>
-            </div>
-          </div>
-
-          <button type="button" id="confirm-btn">Confirm</button>
-        </form>
-      </div>
-      
-    </div>
+    <div id="root"></div>
   </main>
 
 

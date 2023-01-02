@@ -13,7 +13,7 @@ class AppDisplay extends React.Component {
 						<img
 							src='./images/card-logo.svg'
 							className='card-front-logo'
-							alt='card logo'
+							alt=''
 						/>
 						<p className='card-front-number'>{this.props.data.cardNumber}</p>
 						<p className='card-front-cardholder-name'>{this.props.data.name}</p>
