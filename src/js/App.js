@@ -13,11 +13,11 @@ class App extends React.Component {
 			month: 'MM',
 			year: 'YY',
 			onError: {
-				errorName: null,
-				errorNumber: null,
-				errorCVC: null,
-				errorMonth: null,
-				errorYear: null,
+				errorName: true,
+				errorNumber: true,
+				errorCVC: true,
+				errorMonth: true,
+				errorYear: true,
 				//any true value in onError means that form has errors
 			},
 		};
@@ -64,11 +64,15 @@ class App extends React.Component {
 		let name = this.onSubmitName();
 		let cardNumber = this.onNumberSubmit();
 		let cvc = this.onCvcSubmit();
+		let month = true;
+		let year = true;
 		this.setState({
 			onError: {
 				errorName: name,
 				errorNumber: cardNumber,
 				errorCVC: cvc,
+				errorMonth: month,
+                errorYear: year,
 			},
 		});
 	}
@@ -90,7 +94,7 @@ class App extends React.Component {
 		return result;
 	}
 	onCvcSubmit() {
-		if (this.state.cvc.length !== 3 || this.state.cvc === 'cvc') {
+		if (this.state.cvc.length !== 3 || this.state.cvc === 'CVC') {
 			return true;
 		} else return false;
 	}
@@ -103,13 +107,14 @@ class App extends React.Component {
 			onCvcChange: this.onCvcChange,
 		};
 		let formReady = true;
+		
 		for (let error of Object.keys(this.state.onError)) {
-			if (this.state.onError[error] === true) {
-				formReady = true;
-				break;
+			if (this.state.onError[error] !== false) {
+				formReady = false;
+				// break;
 			}
 		}
-		if (!formReady) {
+		if (formReady) {
 			return (
 				<div className='container'>
 					<AppDisplay data={this.state} />
@@ -120,7 +125,6 @@ class App extends React.Component {
 			return (
 				<div className='container'>
 					<AppDisplay data={this.state} />
-
 					<AppInput data={this.state} methods={methods} />
 				</div>
 			);
