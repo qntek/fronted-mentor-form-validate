@@ -11,6 +11,7 @@ class InputOneField extends React.Component {
 					{this.props.source.label_text}
 				</label>
 				<input
+					className={this.props.error === true ? 'error-border' : ''}
 					type='text'
 					maxLength={this.props.source.input_max_length}
 					pattern={this.props.source.input_pattern}
@@ -19,7 +20,7 @@ class InputOneField extends React.Component {
 				/>
 				<p
 					className={
-						this.props.error === 'true'
+						this.props.error === true
 							? 'error error-cardholder'
 							: 'error error-cardholder off'
 					}>

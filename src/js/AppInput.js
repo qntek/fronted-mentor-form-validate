@@ -31,13 +31,13 @@ class AppInput extends React.Component {
 				<form method='post'>
 					<InputOneField
 						source={nameData}
-						errors={this.props.data.onError.errorName}
+						error={this.props.data.onError.errorName}
 						method={this.props.methods.onNameChange}
 					/>
 
 					<InputOneField
 						source={numberData}
-						errors={this.props.data.onError.errorNumber}
+						error={this.props.data.onError.errorNumber}
 						method={this.props.methods.onNumberChange}
 					/>
 
@@ -86,7 +86,10 @@ class AppInput extends React.Component {
 						</div>
 					</div>
 
-					<button type='button' id='confirm-btn'>
+					<button
+						type='button'
+						id='confirm-btn'
+						onClick={this.props.methods.onSubmit}>
 						Confirm
 					</button>
 				</form>

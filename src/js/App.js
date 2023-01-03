@@ -7,8 +7,8 @@ class App extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			name: 'Jane Appleseed',
-			cardNumber: '0000 0000 0000 0000',
+			name: 'Cardholder name',
+			cardNumber: 'card number',
 			cvc: '000',
 			month: '00',
 			year: '00',
@@ -22,6 +22,8 @@ class App extends React.Component {
 		};
 		this.onNameChange = this.onNameChange.bind(this);
 		this.onNumberChange = this.onNumberChange.bind(this);
+		this.onSubmit = this.onSubmit.bind(this);
+		this.onSubmitName = this.onSubmitName.bind(this);
 	}
 
 	onNameChange(event) {
@@ -41,31 +43,55 @@ class App extends React.Component {
 			cardNumber: currentValue,
 		});
 	}
+	onSubmit() {
+		let name = this.onSubmitName();
+		let cardNumber;
+
+        this.setState({
+			onError: {
+				errorName: name,
+			}
+		})
+	}
+
+	onSubmitName() {
+		const regName = /^[a-zA-Z]+ [a-zA-Z]+$/; // validates the name field if it's constructed with a two words made only from letters (with one space between).
+		if (
+			!regName.test(this.state.name) ||
+			this.state.name.toLocaleLowerCase() === 'cardholder name'
+		) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	render() {
 		const methods = {
 			onNameChange: this.onNameChange,
 			onNumberChange: this.onNumberChange,
+			onSubmit: this.onSubmit,
 		};
 		let formReady = true;
 		for (let error of Object.keys(this.state.onError)) {
 			if (this.state.onError[error] === true) {
-				formReady = false;
+				formReady = true;
 				break;
 			}
 		}
-		if (formReady) {
+		if (!formReady) {
 			return (
 				<div className='container'>
 					<AppDisplay data={this.state} />
-					<AppInput data={this.state} methods={methods} />
+					<AppFinish />
 				</div>
 			);
 		} else {
 			return (
 				<div className='container'>
 					<AppDisplay data={this.state} />
-					<AppFinish />
+					
+					<AppInput data={this.state} methods={methods} />
 				</div>
 			);
 		}
