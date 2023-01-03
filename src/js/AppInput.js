@@ -1,6 +1,7 @@
 import React from 'react';
 
 import InputOneField from './InputOneField';
+import InputMonthYear from './InputMonthYear';
 class AppInput extends React.Component {
 	constructor(props) {
 		super(props);
@@ -48,34 +49,9 @@ class AppInput extends React.Component {
 					/>
 
 					<div className='form-date-cvc-container'>
-						<div className='form-date-container'>
-							<p className='expire-date'>EXP. DATE (MM/YY)</p>
-
-							<div className='form-date-inputs'>
-								<label className='exp-date-mm' htmlFor='exp-month'></label>
-								<input
-									type='number'
-									min='1'
-									max='12'
-									id='exp-month'
-									placeholder='MM'
-									pattern='\d*'
-									maxLength='2'
-								/>
-								<label className='exp-date-yy' htmlFor='exp-year'></label>
-								<input
-									type='number'
-									pattern='\d*'
-									maxLength='2'
-									id='exp-year'
-									placeholder='YY'
-								/>
-							</div>
-
-							<p className='error error-date off'>Invalid format (MM / YY)</p>
-						</div>
-
-						<InputOneField
+						<InputMonthYear onMonthChange={this.props.methods.onMonthChange} onYearChange={this.props.methods.onYearChange} />
+						
+            <InputOneField
 							source={cvcData}
 							error={this.props.data.onError.errorCVC}
 							method={this.props.methods.onCvcChange}

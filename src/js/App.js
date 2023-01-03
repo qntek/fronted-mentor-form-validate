@@ -8,16 +8,16 @@ class App extends React.Component {
 		super();
 		this.state = {
 			name: 'Cardholder name',
-			cardNumber: 'card number',
+			cardNumber: '',
 			cvc: 'CVC',
 			month: 'MM',
 			year: 'YY',
 			onError: {
-				errorName: true,
-				errorNumber: true,
-				errorCVC: true,
-				errorMonth: true,
-				errorYear: true,
+				errorName: null,
+				errorNumber: null,
+				errorCVC: null,
+				errorMonth: null,
+				errorYear: null,
 				//any true value in onError means that form has errors
 			},
 		};
@@ -28,6 +28,8 @@ class App extends React.Component {
 		this.onNumberSubmit = this.onNumberSubmit.bind(this);
 		this.onCvcChange = this.onCvcChange.bind(this);
 		this.onCvcSubmit = this.onCvcSubmit.bind(this);
+		this.onMonthChange = this.onMonthChange.bind(this);
+		this.onYearChange = this.onYearChange.bind(this);
 	}
 
 	onNameChange(event) {
@@ -48,6 +50,7 @@ class App extends React.Component {
 			cardNumber: currentValue,
 		});
 	}
+	
 	onCvcChange(event) {
 		event.target.value = event.target.value.replace(/\D/g, '');
 		let value = event.target.value;
@@ -58,21 +61,42 @@ class App extends React.Component {
 			cvc: value,
 		});
 	}
-
+	onMonthChange(event) {
+		event.target.value = event.target.value.replace(/\D/g, '');
+		if (event.target.value.length > 2) {
+			event.target.value = event.target.value.slice(0, 2);
+		}
+		let value = +event.target.value;
+		if (value < 1 || value > 12) {
+			event.target.value = '';
+		}
+		this.setState({
+			month: event.target.value,
+		});
+	}
+	onYearChange(event){
+		event.target.value = event.target.value.replace(/\D/g, '');
+		if (event.target.value.length > 2) {
+			event.target.value = event.target.value.slice(0, 2);
+		}
+		this.setState({
+			year: event.target.value,
+		})
+	}
 	onSubmit() {
 		// runs functions witch validate if form fields are filled correct
 		let name = this.onSubmitName();
 		let cardNumber = this.onNumberSubmit();
 		let cvc = this.onCvcSubmit();
-		let month = true;
-		let year = true;
+		let month = null;
+		let year = null;
 		this.setState({
 			onError: {
 				errorName: name,
 				errorNumber: cardNumber,
 				errorCVC: cvc,
 				errorMonth: month,
-                errorYear: year,
+				errorYear: year,
 			},
 		});
 	}
@@ -105,9 +129,11 @@ class App extends React.Component {
 			onNumberChange: this.onNumberChange,
 			onSubmit: this.onSubmit,
 			onCvcChange: this.onCvcChange,
+			onMonthChange: this.onMonthChange,
+			onYearChange: this.onYearChange,
 		};
 		let formReady = true;
-		
+
 		for (let error of Object.keys(this.state.onError)) {
 			if (this.state.onError[error] !== false) {
 				formReady = false;
