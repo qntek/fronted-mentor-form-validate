@@ -12,6 +12,7 @@ class InputOneField extends React.Component {
 				</label>
 				<input
 					className={this.props.error === true ? 'error-border' : ''}
+					id={this.props.source.label_htmlFor}
 					type='text'
 					maxLength={this.props.source.input_max_length}
 					pattern={this.props.source.input_pattern}

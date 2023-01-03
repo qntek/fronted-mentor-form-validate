@@ -21,7 +21,7 @@ class AppInput extends React.Component {
 			label_htmlFor: 'cardnumber',
 			label_text: 'Card Number',
 			input_max_length: '16',
-			input_pattern: 'd*',
+			input_pattern: '\d*',
 			input_place_holder: 'e.g. 1234 5678 9123 0000',
 			error_text: 'Invalid number of characters',
 		};

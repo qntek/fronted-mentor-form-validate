@@ -18,12 +18,14 @@ class App extends React.Component {
 				errorCVC: null,
 				errorMonth: null,
 				errorYear: null,
+				//any true value in onError means that form has error.
 			},
 		};
 		this.onNameChange = this.onNameChange.bind(this);
 		this.onNumberChange = this.onNumberChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 		this.onSubmitName = this.onSubmitName.bind(this);
+		this.onNumberSubmit = this.onNumberSubmit.bind(this);
 	}
 
 	onNameChange(event) {
@@ -32,26 +34,29 @@ class App extends React.Component {
 		});
 	}
 	onNumberChange(event) {
+		event.target.value = event.target.value.replace(/\D/g, '');
 		let currentValue = event.target.value.toString().padEnd(16, '0');
 
 		currentValue = `${currentValue.slice(0, 4)} ${currentValue.slice(
 			4,
 			8
 		)} ${currentValue.slice(8, 12)} ${currentValue.slice(12, 16)}`;
-
+		// puts space on every fourth digit on displayed card model
 		this.setState({
 			cardNumber: currentValue,
 		});
 	}
 	onSubmit() {
+		// runs functions witch validate if form fields are filled correct
 		let name = this.onSubmitName();
-		let cardNumber;
+		let cardNumber = this.onNumberSubmit();
 
-        this.setState({
+		this.setState({
 			onError: {
 				errorName: name,
-			}
-		})
+				errorNumber: cardNumber,
+			},
+		});
 	}
 
 	onSubmitName() {
@@ -64,6 +69,11 @@ class App extends React.Component {
 		} else {
 			return false;
 		}
+	}
+	onNumberSubmit() {
+		const cardNumberInputField = document.getElementById('cardnumber').value;
+		let result = cardNumberInputField.toString().length !== 16 ? true : false;
+		return result;
 	}
 
 	render() {
@@ -90,7 +100,7 @@ class App extends React.Component {
 			return (
 				<div className='container'>
 					<AppDisplay data={this.state} />
-					
+
 					<AppInput data={this.state} methods={methods} />
 				</div>
 			);
