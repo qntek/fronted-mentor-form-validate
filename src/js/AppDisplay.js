@@ -25,7 +25,7 @@ class AppDisplay extends React.Component {
 				</div>
 				<div className='card-reverse'>
 					<div>
-						<p className='card-reverse-cvc'>{this.props.data.cvc}</p>
+						<p className='card-reverse-cvc'>{this.props.data.cvc !== ''? this.props.data.cvc : 'CVC'}</p>
 					</div>
 				</div>
 			</div>

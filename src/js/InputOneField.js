@@ -15,7 +15,6 @@ class InputOneField extends React.Component {
 					id={this.props.source.label_htmlFor}
 					type='text'
 					maxLength={this.props.source.input_max_length}
-					pattern={this.props.source.input_pattern}
 					placeholder={this.props.source.input_place_holder}
 					onChange={this.props.method}
 				/>

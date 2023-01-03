@@ -12,7 +12,6 @@ class AppInput extends React.Component {
 			label_htmlFor: 'cardholder-name',
 			label_text: 'Cardholder Name',
 			input_max_length: '26',
-			input_pattern: '',
 			input_place_holder: 'e.g. Jane Appleseed',
 			error_text: 'Invalid format, name and surname required.',
 		};
@@ -21,9 +20,16 @@ class AppInput extends React.Component {
 			label_htmlFor: 'cardnumber',
 			label_text: 'Card Number',
 			input_max_length: '16',
-			input_pattern: '\d*',
 			input_place_holder: 'e.g. 1234 5678 9123 0000',
 			error_text: 'Invalid number of characters',
+		};
+		const cvcData = {
+			class_name: 'form-cvc-container',
+			label_htmlFor: 'cvc-number',
+			label_text: 'CVC',
+			input_max_length: '3',
+			input_place_holder: 'e.g. 123',
+			error_text: 'Three digits required.',
 		};
 
 		return (
@@ -69,21 +75,11 @@ class AppInput extends React.Component {
 							<p className='error error-date off'>Invalid format (MM / YY)</p>
 						</div>
 
-						<div className='form-cvc-container'>
-							<label htmlFor='cvc-number' className='cvc-number'>
-								CVC
-							</label>
-							<input
-								type='text'
-								name='cvc-number'
-								pattern='\d*'
-								maxLength='3'
-								id='cvc-number'
-								step='1'
-								placeholder='e.g. 123'
-							/>
-							<p className='error error-cvc off'>Three digits required.</p>
-						</div>
+						<InputOneField
+							source={cvcData}
+							error={this.props.data.onError.errorCVC}
+							method={this.props.methods.onCvcChange}
+						/>
 					</div>
 
 					<button
