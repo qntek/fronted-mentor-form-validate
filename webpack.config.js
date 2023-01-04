@@ -79,6 +79,7 @@ module.exports = {
 					filename: 'images/[name][ext]',
 				},
 			},
+			
 		],
 	},
 	resolve: {
@@ -99,4 +100,5 @@ module.exports = {
 			},
 		}),
 	],
+	
 };

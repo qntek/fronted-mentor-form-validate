@@ -16,7 +16,7 @@
 .prettierignore
 
 node_modules
-/dist
+
 
 style-guide.md
 .gitignore

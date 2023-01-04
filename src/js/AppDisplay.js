@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../images/card-logo.svg'
 class AppDisplay extends React.Component {
 	constructor(props) {
 		super(props);
