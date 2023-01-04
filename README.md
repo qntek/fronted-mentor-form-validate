@@ -16,9 +16,9 @@ Users should be able to:
 
 ### Screenshot
 
-![](./images/screenshots/screenshot1.jpg)
-![](./images/screenshots/screenshot2.jpg)
-![](./images/screenshots/screenshot3.jpg)
+![](./src/images/screenshots/screenshot1.jpg)
+![](./src/images/screenshots/screenshot2.jpg)
+![](./src/images/screenshots/screenshot3.jpg)
 
 
 ### Links

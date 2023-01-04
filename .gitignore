@@ -15,7 +15,7 @@
 .DS_Store
 .prettierignore
 
-/node_modules
+node_modules
 /dist
 
 style-guide.md
