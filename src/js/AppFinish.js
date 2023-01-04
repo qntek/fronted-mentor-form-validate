@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../images/icon-complete.svg';
 class AppFinish extends React.Component {
 	constructor() {
 			super();
