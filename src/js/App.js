@@ -30,6 +30,7 @@ class App extends React.Component {
 		this.onCvcSubmit = this.onCvcSubmit.bind(this);
 		this.onMonthChange = this.onMonthChange.bind(this);
 		this.onYearChange = this.onYearChange.bind(this);
+		this.onDateSubmit = this.onDateSubmit.bind(this);
 	}
 
 	onNameChange(event) {
@@ -50,7 +51,7 @@ class App extends React.Component {
 			cardNumber: currentValue,
 		});
 	}
-	
+
 	onCvcChange(event) {
 		event.target.value = event.target.value.replace(/\D/g, '');
 		let value = event.target.value;
@@ -71,32 +72,31 @@ class App extends React.Component {
 			event.target.value = '';
 		}
 		this.setState({
-			month: event.target.value,
+			month: event.target.value.toString().padStart(2, '0'),
 		});
 	}
-	onYearChange(event){
+	onYearChange(event) {
 		event.target.value = event.target.value.replace(/\D/g, '');
 		if (event.target.value.length > 2) {
 			event.target.value = event.target.value.slice(0, 2);
 		}
 		this.setState({
 			year: event.target.value,
-		})
+		});
 	}
 	onSubmit() {
 		// runs functions witch validate if form fields are filled correct
 		let name = this.onSubmitName();
 		let cardNumber = this.onNumberSubmit();
 		let cvc = this.onCvcSubmit();
-		let month = null;
-		let year = null;
+		let date = this.onDateSubmit();
 		this.setState({
 			onError: {
 				errorName: name,
 				errorNumber: cardNumber,
 				errorCVC: cvc,
-				errorMonth: month,
-				errorYear: year,
+				errorMonth: date,
+				errorYear: date,
 			},
 		});
 	}
@@ -121,6 +121,28 @@ class App extends React.Component {
 		if (this.state.cvc.length !== 3 || this.state.cvc === 'CVC') {
 			return true;
 		} else return false;
+	}
+	onDateSubmit() {
+		const errorDate = document.querySelector('.error-date');
+		let year = new Date().getFullYear().toString().slice(-2);
+		let expYear = this.state.year;
+
+		if (!expYear || Number.isNaN(+expYear) || +expYear > +year + 4) {
+			errorDate.textContent = 'Invalid format (MM / YY)';
+			return true;
+		} else if (+expYear === +year) {
+			if (+this.state.month <= new Date().getMonth() + 1) {
+				errorDate.textContent = 'Card out of date';
+				return true;
+			}
+			return false
+		} else if (+expYear < +year) {
+			errorDate.textContent = 'Card out of date';
+			return true;
+		} else {
+			errorDate.textContent = 'Invalid format (MM / YY)';
+			return false;
+		}
 	}
 
 	render() {

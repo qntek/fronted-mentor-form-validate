@@ -49,7 +49,7 @@ class AppInput extends React.Component {
 					/>
 
 					<div className='form-date-cvc-container'>
-						<InputMonthYear onMonthChange={this.props.methods.onMonthChange} onYearChange={this.props.methods.onYearChange} />
+						<InputMonthYear onMonthChange={this.props.methods.onMonthChange} onYearChange={this.props.methods.onYearChange} error={this.props.data.onError}/>
 						
             <InputOneField
 							source={cvcData}

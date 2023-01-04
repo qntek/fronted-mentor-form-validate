@@ -6,6 +6,7 @@ class InputMonthYear extends React.Component {
 	}
 
 	render() {
+		let errorClasses = this.props.error.errorYear === true ? 'error error-date' : 'error error-date off';
 		return (
 			<div className='form-date-container'>
 				<p className='expire-date'>EXP. DATE (MM/YY)</p>
@@ -19,6 +20,7 @@ class InputMonthYear extends React.Component {
 						id='exp-month'
 						placeholder='MM'
 						maxLength='2'
+						className={this.props.error.errorMonth === true ? 'error-border' : ''}
             onChange={this.props.onMonthChange}
 					/>
 					<input
@@ -27,11 +29,12 @@ class InputMonthYear extends React.Component {
 						maxLength='2'
 						id='exp-year'
 						placeholder='YY'
+						className={this.props.error.errorYear === true ? 'error-border' : ''}
             onChange={this.props.onYearChange}
 					/>
 				</div>
 
-				<p className='error error-date off'>Invalid format (MM / YY)</p>
+				<p className={errorClasses}>Invalid format (MM / YY)</p>
 			</div>
 		);
 	}
